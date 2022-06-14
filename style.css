@@ -28,13 +28,38 @@ h1{
 .cards > div{
     height: 146px;
     width: 117px;
+    position: relative;
+    margin: 2% 1%;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #A7E9AF;
-    margin: 2% 1%;
-    border-radius: 8px;
-}
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+
+.back-face {
+    transform: rotateY(180deg);
+  }
+
+  /* Add in card-game */
+  .back-face-turn {
+    transform: rotateY(0deg);
+  }
+
+  .front-face {
+    transform: rotateY(-180deg);
+  }
+
 
 .cards img{
     width: 100px;
