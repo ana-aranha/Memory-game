@@ -1,0 +1,52 @@
+body{
+    background-color: #EEF9BF;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+    font-size: 56px;
+    color: #75B79E;
+    font-weight: bold;
+    text-align: center;
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10% 5%;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards > div{
+    height: 146px;
+    width: 117px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #A7E9AF;
+    margin: 2% 1%;
+    border-radius: 8px;
+}
+
+.cards img{
+    width: 100px;
+    height: 140;
+}
+
+.hidden{
+    display: none;
+}
+
+@media (max-width: 614px){
+    h1{
+        font-size: 36px;
+    }
+}
