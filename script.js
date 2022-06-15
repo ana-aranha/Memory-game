@@ -33,12 +33,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/bobrossparrot.gif" alt="bobrossparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/bobrossparrot.gif" alt="bobrossparrot">
+        </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
         <div data-identifier="back-face" class="face">
@@ -49,12 +49,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/explodyparrot.gif" alt="explodyparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/explodyparrot.gif" alt="explodyparrot">
+        </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
         <div data-identifier="back-face" class="face">
@@ -65,12 +65,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/fiestaparrot.gif" alt="fiestaparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/fiestaparrot.gif" alt="fiestaparrot">
+        </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
         <div data-identifier="back-face" class="face">
@@ -81,12 +81,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/metalparrot.gif" alt="metalparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/metalparrot.gif" alt="metalparrot">
+        </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
         <div data-identifier="back-face" class="face">
@@ -97,12 +97,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/revertitparrot.gif" alt="revertitparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/revertitparrot.gif" alt="revertitparrot">
+        </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
         <div data-identifier="back-face" class="face">
@@ -113,12 +113,12 @@ function defineNumberOfCards(){
         </div>
     </div>`
     ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-    <div data-identifier="back-face" class="face">
-        <img src="img/front.png" alt="carrot">
-    </div>
-    <div data-identifier="front-face" class="back-face face">
-        <img src="img/tripletsparrot.gif" alt="tripletsparrot">
-    </div>
+        <div data-identifier="back-face" class="face">
+            <img src="img/front.png" alt="carrot">
+        </div>
+        <div data-identifier="front-face" class="back-face face">
+            <img src="img/tripletsparrot.gif" alt="tripletsparrot">
+        </div>
     </div>`
     ]
     cardsGame = document.querySelector(".cards")
@@ -139,8 +139,27 @@ defineNumberOfCards()
 function turnCard(element){
     back = element.querySelector("div:nth-child(1)")
     front = element.querySelector("div:nth-child(2)")
-    cardFigure = front.innerHTML;
-    back.classList.toggle("front-face")
-    front.classList.toggle("back-face-turn")   
-    front.classList.toggle("back-face")
+    cardTurned = cardsGame.querySelector(".front-face");
+    back.classList.add("front-face")
+    front.classList.add("back-face-turn")   
+    front.classList.remove("back-face")
+    if(cardTurned === null){
+        firstCardTurned = element.innerHTML
+        cardSelected = element
+        FindPairs()
+    }
+    else if(cardTurned !== null){
+        secondCardTurned = element.innerHTML
+        cardSelected2 = element
+        FindPairs()
+    }
+}
+
+function FindPairs(){
+    if (firstCardTurned !== secondCardTurned){
+        console.log("Não são iguais")
+        // quando virar irá redefinir o cardTurned
+    } if (firstCardTurned === secondCardTurned){
+        console.log("São Iguais")
+    }
 }
