@@ -1,4 +1,11 @@
-let ArrayTest = []
+let arrayCards = []
+let frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
+    `img src="img/bobrossparrot.gif" alt="bobrossparrot"`,
+    `img src="img/explodyparrot.gif" alt="explodyparrot"`,
+    `img src="img/fiestaparrot.gif" alt="fiestaparrot"`,
+    `img src="img/metalparrot.gif" alt="metalparrot"`,
+    `img src="img/revertitparrot.gif" alt="revertitparrot"`,
+    `img src="img/tripletsparrot.gif" alt="tripletsparrot"`]
 
 function defineNumberOfCards(){
     numberSelected = prompt("Com quantas cartas você quer jogar? Escolha número par entre 4 e 14")
@@ -6,128 +13,23 @@ function defineNumberOfCards(){
         alert("Escolha número par e entre 4 e 14!")
         numberSelected = prompt("Com quantas cartas você quer jogar? Escolha número par entre 4 e 14")
     }
-    cardsArray = [`
-    <div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/unicornparrot.gif" alt="unicornparrot">
-        </div>
-    </div>`
-    ,`
-    <div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/unicornparrot.gif" alt="unicornparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/bobrossparrot.gif" alt="bobrossparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/bobrossparrot.gif" alt="bobrossparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/explodyparrot.gif" alt="explodyparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/explodyparrot.gif" alt="explodyparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/fiestaparrot.gif" alt="fiestaparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/fiestaparrot.gif" alt="fiestaparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/metalparrot.gif" alt="metalparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/metalparrot.gif" alt="metalparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/revertitparrot.gif" alt="revertitparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/revertitparrot.gif" alt="revertitparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/tripletsparrot.gif" alt="tripletsparrot">
-        </div>
-    </div>`
-    ,`<div class="card-game" data-identifier="card" onclick="turnCard(this)">
-        <div data-identifier="back-face" class="face">
-            <img src="img/front.png" alt="carrot">
-        </div>
-        <div data-identifier="front-face" class="back-face face">
-            <img src="img/tripletsparrot.gif" alt="tripletsparrot">
-        </div>
-    </div>`
-    ]
     cardsGame = document.querySelector(".cards")
-    for(i=0;i<(numberSelected);i++){
-        ArrayTest.push(cardsArray[i])
+    frontImages.sort(comparador);
+    for(i=0;i<(numberSelected/2);i++){
+        let templadeCard = `
+        <div class="card-game" data-identifier="card" onclick="turnCard(this)">
+            <div data-identifier="back-face" class="face">
+                <img src="img/front.png" alt="carrot">
+            </div>
+            <div data-identifier="front-face" class="back-face face">
+                <${frontImages[i]}>
+            </div>
+        </div>`    
+        arrayCards.push(`${templadeCard}`,`${templadeCard}`);
     }; 
-    ArrayTest.sort(comparador);
+    arrayCards.sort(comparador);
     for(i=0;i<(numberSelected);i++){
-        cardsGame.innerHTML = cardsGame.innerHTML + ArrayTest[i]}
+        cardsGame.innerHTML = cardsGame.innerHTML + arrayCards[i]}
 }
 
 function comparador() { 
