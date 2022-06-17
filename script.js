@@ -42,14 +42,16 @@ let equalCards = []
 function turnCard(element){
     back = element.querySelector("div:nth-child(1)")
     front = element.querySelector("div:nth-child(2)")
+    if(front.classList.contains("back-face")){
     back.classList.add("front-face")
     front.classList.add("back-face-turn")   
     front.classList.remove("back-face")
-    FindPairs(element)
+    FindPairs(element)}
 }
-
+contador = 0
 cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
 function FindPairs(element){
+    contador++
     if(equalCards.length<2){
         equalCards.push(element.innerHTML)
         if(equalCards.length == 2 && equalCards[0] === equalCards[1]){
@@ -65,6 +67,7 @@ function FindPairs(element){
         }
     }
     cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
+    setTimeout(youWIn, 1000)
 }
 
 function notPairYet(){
@@ -75,4 +78,10 @@ function notPairYet(){
         back.classList.remove("front-face")
         front.classList.remove("back-face-turn")   
         front.classList.add("back-face")}
+}
+
+function youWIn(){
+    if(cardTurned.length === 0){
+        alert(`Você ganhou em ${contador} jogadas!`)
+    }
 }
