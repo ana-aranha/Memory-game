@@ -17,7 +17,7 @@ function defineNumberOfCards(){
     frontImages.sort(comparador);
     for(i=0;i<(numberSelected/2);i++){
         let templadeCard = `
-        <div class="card-game" data-identifier="card" onclick="turnCard(this)">
+        <div class="card-game notPair" data-identifier="card" onclick="turnCard(this)">
             <div data-identifier="back-face" class="face">
                 <img src="img/front.png" alt="carrot">
             </div>
@@ -37,31 +37,42 @@ function comparador() {
 }
 
 defineNumberOfCards()
+let equalCards = []
 
 function turnCard(element){
     back = element.querySelector("div:nth-child(1)")
     front = element.querySelector("div:nth-child(2)")
-    cardTurned = cardsGame.querySelector(".front-face");
     back.classList.add("front-face")
     front.classList.add("back-face-turn")   
     front.classList.remove("back-face")
-    if(cardTurned === null){
-        firstCardTurned = element.innerHTML
-        cardSelected = element
-        FindPairs()
-    }
-    else if(cardTurned !== null){
-        secondCardTurned = element.innerHTML
-        cardSelected2 = element
-        FindPairs()
-    }
+    FindPairs(element)
 }
 
-function FindPairs(){
-    if (firstCardTurned !== secondCardTurned){
-        console.log("Não são iguais")
-        // quando virar irá redefinir o cardTurned
-    } if (firstCardTurned === secondCardTurned){
-        console.log("São Iguais")
+cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
+function FindPairs(element){
+    if(equalCards.length<2){
+        equalCards.push(element.innerHTML)
+        if(equalCards.length == 2 && equalCards[0] === equalCards[1]){
+            for(i=0;i<cardTurned.length;i++){
+                if(cardTurned[i].innerHTML == equalCards[0]){
+                    cardTurned[i].classList.remove("notPair")
+                }
+            }
+            equalCards=[]
+        } else if(equalCards.length == 2 && equalCards[0] !== equalCards[1]){
+            setTimeout(notPairYet, 1000);
+            equalCards=[]
+        }
     }
+    cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
+}
+
+function notPairYet(){
+    for(i=0;i<cardTurned.length;i++){
+        let thisone = cardTurned[i]
+        back = thisone.querySelector("div:nth-child(1)")
+        front = thisone.querySelector("div:nth-child(2)")
+        back.classList.remove("front-face")
+        front.classList.remove("back-face-turn")   
+        front.classList.add("back-face")}
 }
