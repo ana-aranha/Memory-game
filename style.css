@@ -15,7 +15,7 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 10% 5%;
+    margin: 40px 5% 10% 5%;
 }
 
 .cards{
@@ -64,6 +64,30 @@ h1{
 .cards img{
     width: 100px;
     height: 140;
+}
+
+.topo{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+.timer{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  #75B79E;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
 }
 
 .hidden{

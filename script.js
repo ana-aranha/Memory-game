@@ -1,4 +1,5 @@
 let arrayCards = []
+let counter = 0
 let frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
     `img src="img/bobrossparrot.gif" alt="bobrossparrot"`,
     `img src="img/explodyparrot.gif" alt="explodyparrot"`,
@@ -51,6 +52,9 @@ function turnCard(element){
 contador = 0
 cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
 function FindPairs(element){
+    if(contador==0){
+        startCount()
+    }
     contador++
     if(equalCards.length<2){
         equalCards.push(element.innerHTML)
@@ -59,6 +63,9 @@ function FindPairs(element){
                 if(cardTurned[i].innerHTML == equalCards[0]){
                     cardTurned[i].classList.remove("notPair")
                 }
+            if(cardTurned.length == 0){
+                stopCount()
+            }
             }
             equalCards=[]
         } else if(equalCards.length == 2 && equalCards[0] !== equalCards[1]){
@@ -82,6 +89,23 @@ function notPairYet(){
 
 function youWIn(){
     if(cardTurned.length === 0){
-        alert(`Você ganhou em ${contador} jogadas!`)
+        alert(`Você ganhou em ${counter-1} segundos com ${contador} jogadas`)
     }
+}
+
+function startCount() {
+    document.querySelector(".topo").innerHTML = `<div class='timer'> Timer: ${counter} s</div>`;
+    counter++;
+    timeout = setTimeout(startCount, 1000);
+  }
+
+//   function startCount() {
+//     if (!timer_on) {
+//       timer_on = 1;
+//       timedCount();
+//     }
+//   }
+
+  function stopCount() {
+    clearTimeout(timeout);
 }
