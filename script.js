@@ -62,10 +62,11 @@ function FindPairs(element){
             for(i=0;i<cardTurned.length;i++){
                 if(cardTurned[i].innerHTML == equalCards[0]){
                     cardTurned[i].classList.remove("notPair")
+                    console.log({cardTurned}) //Duplicity Problem!!
                 }
-            if(cardTurned.length == 0){
-                stopCount()
-            }
+                if(cardTurned.length == 0){
+                    stopCount()
+                }
             }
             equalCards=[]
         } else if(equalCards.length == 2 && equalCards[0] !== equalCards[1]){
@@ -90,6 +91,23 @@ function notPairYet(){
 function youWIn(){
     if(cardTurned.length === 0){
         alert(`Você ganhou em ${counter-1} segundos com ${contador} jogadas`)
+    // let resposta = prompt("Você quer jogar novamente?")
+    // if(resposta == 'sim'){
+    //     cardsGame.innerHTML = ""
+    //     contador = 0
+    //     counter = 0
+    //     let frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
+    //     `img src="img/bobrossparrot.gif" alt="bobrossparrot"`,
+    //     `img src="img/explodyparrot.gif" alt="explodyparrot"`,
+    //     `img src="img/fiestaparrot.gif" alt="fiestaparrot"`,
+    //     `img src="img/metalparrot.gif" alt="metalparrot"`,
+    //     `img src="img/revertitparrot.gif" alt="revertitparrot"`,
+    //     `img src="img/tripletsparrot.gif" alt="tripletsparrot"`]
+    //     setTimeout(defineNumberOfCards, 1000)
+    // }else if(resposta == 'não'){Window.close()}
+    // else{
+    //     resposta = prompt("Você quer jogar novamente? Responda sim ou não")    
+    //     }
     }
 }
 
@@ -98,13 +116,6 @@ function startCount() {
     counter++;
     timeout = setTimeout(startCount, 1000);
   }
-
-//   function startCount() {
-//     if (!timer_on) {
-//       timer_on = 1;
-//       timedCount();
-//     }
-//   }
 
   function stopCount() {
     clearTimeout(timeout);
