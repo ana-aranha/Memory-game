@@ -31,6 +31,7 @@ function defineNumberOfCards(){
     arrayCards.sort(comparador);
     for(i=0;i<(numberSelected);i++){
         cardsGame.innerHTML = cardsGame.innerHTML + arrayCards[i]}  
+        setTimeout(showAll, 500)
 }
 
 function comparador() { 
@@ -43,8 +44,18 @@ startCount()
 firstCard = undefined
 secondCard = undefined
 cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
-
 contadorJogada = 0
+
+function showAll(){
+    for(i=0;i<cardTurned.length;i++){
+    back = cardTurned[i].querySelector("div:nth-child(1)")
+    front = cardTurned[i].querySelector("div:nth-child(2)")
+    back.classList.add("front-face")
+    front.classList.add("back-face-turn")   
+    front.classList.remove("back-face")}
+    setTimeout(notPairYet, 400);
+    cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
+}
 
 function turnCard(element){
     back = element.querySelector("div:nth-child(1)")
