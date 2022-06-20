@@ -30,7 +30,7 @@ function defineNumberOfCards(){
     }; 
     arrayCards.sort(comparador);
     for(i=0;i<(numberSelected);i++){
-        cardsGame.innerHTML = cardsGame.innerHTML + arrayCards[i]}
+        cardsGame.innerHTML = cardsGame.innerHTML + arrayCards[i]}  
 }
 
 function comparador() { 
@@ -38,18 +38,15 @@ function comparador() {
 }
 
 defineNumberOfCards()
-let equalCards = []
+startCount()
 
 firstCard = undefined
 secondCard = undefined
 cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
 
-contador = 0
+contadorJogada = 0
 
 function turnCard(element){
-    if(contador==0){
-        startCount()
-    }
     back = element.querySelector("div:nth-child(1)")
     front = element.querySelector("div:nth-child(2)")
     if(front.classList.contains("back-face") && secondCard == undefined){
@@ -58,11 +55,11 @@ function turnCard(element){
     front.classList.remove("back-face")
     if(firstCard === undefined && secondCard === undefined){
         firstCard = element.innerHTML
-        contador++
+        contadorJogada++
     }
     else if(firstCard != undefined){
         secondCard = element.innerHTML
-        contador++
+        contadorJogada++
         FindPairs(element)
     }
     }
@@ -72,7 +69,7 @@ function FindPairs(element){
         if(secondCard == firstCard){
             for(i=0;i<cardTurned.length;i++){
                 if(cardTurned[i].innerHTML == firstCard){
-                    cardTurned[i].classList.remove("notPair")
+                    cardTurned[i].classList.remove("notPair")            
                 }
                 if(cardTurned.length == 0){
                     stopCount()
@@ -101,35 +98,35 @@ function youWIn(){
     firstCard = undefined
     secondCard = undefined
     if(cardTurned.length === 0){
-        alert(`Você ganhou em ${counter-1} segundos com ${contador} jogadas`)
-    // let resposta = prompt("Você quer jogar novamente? Responda sim ou não")
-    // if(resposta != 'sim' || resposta != 'não'){
-    //     alert("Responda 'sim' ou 'não'")
-    //     resposta = prompt("Você quer jogar novamente? Responda sim ou não")
-    // }
-    // if(resposta === 'sim'){
-    //     cardsGame.innerHTML = ""
-    //     contador = 0
-    //     counter = 0
-    //     frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
-    //     `img src="img/bobrossparrot.gif" alt="bobrossparrot"`,
-    //     `img src="img/explodyparrot.gif" alt="explodyparrot"`,
-    //     `img src="img/fiestaparrot.gif" alt="fiestaparrot"`,
-    //     `img src="img/metalparrot.gif" alt="metalparrot"`,
-    //     `img src="img/revertitparrot.gif" alt="revertitparrot"`,
-    //     `img src="img/tripletsparrot.gif" alt="tripletsparrot"`]
-    //     setTimeout(defineNumberOfCards, 1000)
-    //     console.log("quis jogar")
-    // }else if(resposta === 'não'){
-    //     alert("Bye!")
-    // }
+        alert(`Você ganhou em ${counter-1} segundos com ${contadorJogada} jogadas`)
+    let resposta = prompt("Você quer jogar novamente? Responda sim ou não")
+    while(resposta != 'sim' && resposta != 'não'){
+        alert("Responda sim ou não")
+        resposta = prompt("Você quer jogar novamente?")
     }
+    if(resposta === 'sim'){
+        cardsGame.innerHTML = ""
+        arrayCards = []
+        numberSelected = undefined
+        contadorJogada = 0
+        counter = 0
+        defineNumberOfCards()
+        cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
+    }else if(resposta === 'não'){
+        alert("Bye!")
+        close()
+    }
+}
 }
 
 function startCount() {
     document.querySelector(".topo").innerHTML = `<div class='timer'> Timer: ${counter} s</div>`;
+    timeout = setInterval(secondsCount, 1000);
+  }
+
+  function secondsCount(){
+    document.querySelector(".topo").innerHTML = `<div class='timer'> Timer: ${counter} s</div>`;
     counter++;
-    timeout = setTimeout(startCount, 1000);
   }
 
   function stopCount() {
