@@ -40,38 +40,47 @@ function comparador() {
 defineNumberOfCards()
 let equalCards = []
 
-function turnCard(element){
-    back = element.querySelector("div:nth-child(1)")
-    front = element.querySelector("div:nth-child(2)")
-    if(front.classList.contains("back-face")){
-    back.classList.add("front-face")
-    front.classList.add("back-face-turn")   
-    front.classList.remove("back-face")
-    FindPairs(element)}
-}
-contador = 0
+firstCard = undefined
+secondCard = undefined
 cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
-function FindPairs(element){
+
+contador = 0
+
+function turnCard(element){
     if(contador==0){
         startCount()
     }
-    contador++
-    if(equalCards.length<2){
-        equalCards.push(element.innerHTML)
-        if(equalCards.length == 2 && equalCards[0] === equalCards[1]){
+    back = element.querySelector("div:nth-child(1)")
+    front = element.querySelector("div:nth-child(2)")
+    if(front.classList.contains("back-face") && secondCard == undefined){
+    back.classList.add("front-face")
+    front.classList.add("back-face-turn")   
+    front.classList.remove("back-face")
+    if(firstCard === undefined && secondCard === undefined){
+        firstCard = element.innerHTML
+        contador++
+    }
+    else if(firstCard != undefined){
+        secondCard = element.innerHTML
+        contador++
+        FindPairs(element)
+    }
+    }
+}
+function FindPairs(element){
+    if(firstCard != undefined && secondCard != undefined){
+        if(secondCard == firstCard){
             for(i=0;i<cardTurned.length;i++){
-                if(cardTurned[i].innerHTML == equalCards[0]){
+                if(cardTurned[i].innerHTML == firstCard){
                     cardTurned[i].classList.remove("notPair")
-                    console.log({cardTurned}) //Duplicity Problem!!
                 }
                 if(cardTurned.length == 0){
                     stopCount()
                 }
             }
-            equalCards=[]
-        } else if(equalCards.length == 2 && equalCards[0] !== equalCards[1]){
+            
+        } else if(firstCard != secondCard){
             setTimeout(notPairYet, 1000);
-            equalCards=[]
         }
     }
     cardTurned = cardsGame.querySelectorAll(".card-game.notPair");
@@ -89,14 +98,20 @@ function notPairYet(){
 }
 
 function youWIn(){
+    firstCard = undefined
+    secondCard = undefined
     if(cardTurned.length === 0){
         alert(`Você ganhou em ${counter-1} segundos com ${contador} jogadas`)
-    // let resposta = prompt("Você quer jogar novamente?")
-    // if(resposta == 'sim'){
+    // let resposta = prompt("Você quer jogar novamente? Responda sim ou não")
+    // if(resposta != 'sim' || resposta != 'não'){
+    //     alert("Responda 'sim' ou 'não'")
+    //     resposta = prompt("Você quer jogar novamente? Responda sim ou não")
+    // }
+    // if(resposta === 'sim'){
     //     cardsGame.innerHTML = ""
     //     contador = 0
     //     counter = 0
-    //     let frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
+    //     frontImages=[`img src="img/unicornparrot.gif" alt="unicornparrot"`,
     //     `img src="img/bobrossparrot.gif" alt="bobrossparrot"`,
     //     `img src="img/explodyparrot.gif" alt="explodyparrot"`,
     //     `img src="img/fiestaparrot.gif" alt="fiestaparrot"`,
@@ -104,10 +119,10 @@ function youWIn(){
     //     `img src="img/revertitparrot.gif" alt="revertitparrot"`,
     //     `img src="img/tripletsparrot.gif" alt="tripletsparrot"`]
     //     setTimeout(defineNumberOfCards, 1000)
-    // }else if(resposta == 'não'){Window.close()}
-    // else{
-    //     resposta = prompt("Você quer jogar novamente? Responda sim ou não")    
-    //     }
+    //     console.log("quis jogar")
+    // }else if(resposta === 'não'){
+    //     alert("Bye!")
+    // }
     }
 }
 
